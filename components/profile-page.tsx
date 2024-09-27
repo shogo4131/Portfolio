@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { FaTwitter, FaGithub } from "react-icons/fa";
+import { FaTwitter, FaGithub, FaSpeakerDeck } from "react-icons/fa";
 import { Mail, MessageCircle } from "lucide-react";
+import { SiZenn } from "react-icons/si";
+import { GrDocumentNotes } from "react-icons/gr";
 
 import {
   Accordion,
@@ -87,14 +89,7 @@ export function ProfilePageComponent({ skillList }: Props) {
                 className="text-gray-400 hover:text-white"
                 aria-label="Zenn"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                >
-                  <path d="M.264 23.771h4.984c.264 0 .498-.147.645-.352L19.614.874c.176-.293-.029-.645-.381-.645h-4.72c-.235 0-.44.117-.557.323L.03 23.361c-.088.176.029.41.234.41zM17.445 23.419l6.479-10.408c.205-.323-.029-.733-.41-.733h-4.691c-.176 0-.352.088-.44.235l-6.655 10.643c-.176.264.029.616.352.616h4.984c.205-.001.379-.118.381-.353z" />
-                </svg>
+                <SiZenn size={24} />
               </a>
               <a
                 href="https://speakerdeck.com/shogo4131"
@@ -103,14 +98,7 @@ export function ProfilePageComponent({ skillList }: Props) {
                 className="text-gray-400 hover:text-white"
                 aria-label="Speakerdeck"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                >
-                  <path d="M10.025 13.875H4.687a4.688 4.688 0 0 1 0-9.375h6.227a.938.938 0 0 1 0 1.875H4.687a2.813 2.813 0 0 0 0 5.625h5.338a.938.938 0 0 1 0 1.875zm9.288-4.688h-5.338a.938.938 0 0 1 0-1.875h5.338a2.813 2.813 0 0 0 0-5.625h-6.227a.938.938 0 0 1 0-1.875h6.227a4.688 4.688 0 0 1 0 9.375zm-3.163 9.704L12.9 22.142a.937.937 0 0 1-1.325 0L8.325 18.89a.938.938 0 0 1 1.325-1.325l1.913 1.913V8.25a.938.938 0 0 1 1.875 0v11.228l1.913-1.913a.938.938 0 0 1 1.325 1.325z" />
-                </svg>
+                <FaSpeakerDeck size={24} />
               </a>
               <a
                 href="https://note.com/react_nextjs/"
@@ -119,14 +107,7 @@ export function ProfilePageComponent({ skillList }: Props) {
                 className="text-gray-400 hover:text-white"
                 aria-label="note"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                >
-                  <path d="M6 6h12v12H6V6zm2 2v8h3V8H8zm5 0v8h3V8h-3z" />
-                </svg>
+                <GrDocumentNotes size={24} />
               </a>
             </div>
           </div>
@@ -193,7 +174,9 @@ export function ProfilePageComponent({ skillList }: Props) {
             <h2 className="text-2xl font-semibold mb-4 text-blue-400">
               大事な価値観
             </h2>
-            <p>あとで</p>
+            <p>
+              何事もポジティブに捉えることを大切にしています。仕事を含めた全ての物事には、必ず自分が成長できる機会があると信じています。否定的に考えると、その成長のチャンスを自ら閉ざしてしまうことになります。そのため、どんなこともまずは肯定的に受け止め、毎日一歩でも前進し、自分を成長させることを心がけています。
+            </p>
           </section>
 
           <section>
@@ -201,7 +184,20 @@ export function ProfilePageComponent({ skillList }: Props) {
               現在行っている取り組み
             </h2>
             <ul className="list-disc list-inside space-y-2">
-              <li>エンジニア交流会 & 勉強会の主催</li>
+              <li>
+                エンジニア交流会 & 勉強会の主催
+                <ul className="list-circle list-inside ml-6 mt-2 space-y-1">
+                  <li className="text-gray-400 hover:text-white">
+                    <a
+                      href="https://devguil.connpass.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Developers Guild
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li>技術ブログの執筆</li>
               <li>フロントエンド品質向上の取り組み</li>
             </ul>
@@ -213,15 +209,17 @@ export function ProfilePageComponent({ skillList }: Props) {
             </h2>
             <ul className="list-disc list-inside space-y-2">
               <li>
-                Webアプリケーションの設計・開発
+                ソースコードの品質改善
                 <ul className="list-circle list-inside ml-6 mt-2 space-y-1">
-                  <li>React, Vue.js, Next.jsを使用したフロントエンド開発</li>
-                  <li>Node.js, Expressを使用したバックエンド開発</li>
-                  <li>RESTful APIの設計と実装</li>
+                  <li>
+                    フロントエンドテスト (Integration Test, E2E Test, VRT)の導入
+                  </li>
+                  <li>ソースコードのリファクタリング</li>
+                  <li>ライブラリの刷新 など</li>
                 </ul>
               </li>
               <li>
-                パフォーマンス最適化
+                パフォーマンス改善
                 <ul className="list-circle list-inside ml-6 mt-2 space-y-1">
                   <li>既存Webサイト・アプリケーションの速度改善</li>
                   <li>SEO対策とアクセシビリティの向上</li>
@@ -238,10 +236,20 @@ export function ProfilePageComponent({ skillList }: Props) {
                 チーム支援・メンタリング
                 <ul className="list-circle list-inside ml-6 mt-2 space-y-1">
                   <li>コードレビューとベストプラクティスの共有</li>
-                  <li>若手エンジニアの育成支援</li>
+                  <li>フロントエンドエンジニアの育成支援</li>
+                </ul>
+              </li>
+              <li>
+                採用
+                <ul className="list-circle list-inside ml-6 mt-2 space-y-1">
+                  <li>技術ブログの執筆</li>
+                  <li>自社での勉強会講師 等</li>
                 </ul>
               </li>
             </ul>
+            <p className="mt-4 text-sm">
+              ※納期がある機能開発は時間の都合上対応できません
+            </p>
           </section>
 
           <section>
@@ -309,11 +317,13 @@ export function ProfilePageComponent({ skillList }: Props) {
             <div className="flex flex-col items-center justify-center space-y-4">
               <div className="flex items-center space-x-2">
                 <MessageCircle className="text-blue-400" size={24} />
-                <p className="text-lg">TwitterのDMでお気軽にご連絡ください！</p>
+                <p className="text-lg">
+                  TwitterのDM、メールでお気軽にご連絡ください！
+                </p>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="text-blue-400" size={24} />
-                <p className="text-lg">メール: contact@example.com</p>
+                <p className="text-lg">メール: shogo.tech@gmail.com</p>
               </div>
               <div className="mt-4 flex space-x-4">
                 <a
@@ -326,7 +336,7 @@ export function ProfilePageComponent({ skillList }: Props) {
                   Twitter DMを送る
                 </a>
                 <a
-                  href="mailto:contact@example.com"
+                  href="mailto:shogo.tech@gmail.com"
                   className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-full hover:bg-gray-700 transition duration-300"
                 >
                   <Mail className="mr-2" size={18} />
