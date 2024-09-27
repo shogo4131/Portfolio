@@ -1,5 +1,12 @@
 import { client } from "@/lib/client";
 
+export type SkillResponseData = {
+  contents: Skill[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+};
+
 export type Skill = {
   id: string;
   createdAt: string;
@@ -11,7 +18,7 @@ export type Skill = {
 };
 
 export const getSkillList = async () => {
-  const skills = await client.getList<Skill[]>({
+  const skills = await client.get<SkillResponseData>({
     endpoint: "skills",
     queries: { limit: 100, orders: "publishedAt" },
   });
