@@ -12,14 +12,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MicroCMSListResponse } from "microcms-js-sdk";
+
 import { Skill } from "@/api/skills";
+import { Company } from "@/api/company";
 
 type Props = {
-  skillList: MicroCMSListResponse<Skill[]>;
+  skillList: Skill[];
+  companyList: Company[];
 };
 
-export function ProfilePageComponent({ skillList }: Props) {
+export function ProfilePageComponent({ skillList, companyList }: Props) {
   const [openItems, setOpenItems] = useState<string[]>([]);
 
   const toggleAccordion = (value: string) => {
@@ -30,15 +32,15 @@ export function ProfilePageComponent({ skillList }: Props) {
     );
   };
 
-  const skills = skillList.contents.reduce((acc, { skill, skillType }) => {
-    skillType.forEach((type) => {
-      acc = {
-        ...acc,
-        [type]: acc[type] ? [...acc[type], skill] : [skill],
-      };
-    });
-    return acc;
-  }, {});
+  const skills = skillList.reduce(
+    (acc: { [key: string]: string[] }, { skill, skillType }) => {
+      skillType.forEach((type) => {
+        acc[type] = acc[type] ? [...acc[type], skill] : [skill];
+      });
+      return acc;
+    },
+    {}
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100">
@@ -60,7 +62,7 @@ export function ProfilePageComponent({ skillList }: Props) {
       </header>
 
       <main className="flex-grow">
-        <div className="max-w-3xl mx-auto p-8 space-y-8">
+        <div className="max-w-3xl mx-auto px-8 pb-8 space-y-8">
           <div className="text-center mt-4">
             <h1 className="text-2xl font-semibold mb-4">Shogo</h1>
             <div className="flex justify-center space-x-4">
@@ -266,47 +268,29 @@ export function ProfilePageComponent({ skillList }: Props) {
               職務経歴
             </h2>
             <Accordion type="multiple" value={openItems} className="space-y-4">
-              <AccordionItem value="item-1">
-                <AccordionTrigger
-                  onClick={() => toggleAccordion("item-1")}
-                  className="text-left"
-                >
-                  <div>
-                    <h3 className="text-xl font-medium">
-                      株式会社テックイノベーション
-                    </h3>
-                    <p className="text-gray-400">
-                      シニアフロントエンドエンジニア (2020年4月 - 現在)
+              {companyList.map((company) => (
+                <AccordionItem value="item-1" key={company.id}>
+                  <AccordionTrigger
+                    onClick={() => toggleAccordion("item-1")}
+                    className="text-left"
+                  >
+                    <div>
+                      <h3 className="text-xl font-medium">
+                        {company.companyName}
+                      </h3>
+                      <p className="text-gray-400">
+                        {company.occupation} (
+                        {`${company.startDate} - ${company.endDate}`})
+                      </p>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-gray-300 mt-2 whitespace-pre-line break-words">
+                      {company.content}
                     </p>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-gray-300 mt-2">
-                    大規模なWebアプリケーションのフロントエンド開発をリード。React、TypeScript、GraphQLを使用したプロジェクトで、パフォーマンス最適化とアクセシビリティの向上に貢献。チーム内でのコードレビューやメンタリングも担当。
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger
-                  onClick={() => toggleAccordion("item-2")}
-                  className="text-left"
-                >
-                  <div>
-                    <h3 className="text-xl font-medium">
-                      グローバルウェブ株式会社
-                    </h3>
-                    <p className="text-gray-400">
-                      ウェブデベロッパー (2018年7月 - 2020年3月)
-                    </p>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-gray-300 mt-2">
-                    Vue.jsとLaravelを使用した中規模Webアプリケーションの開発に従事。フロントエンドとバックエンドの両方を担当し、RESTful
-                    APIの設計と実装、データベース設計も行った。アジャイル開発手法を採用したプロジェクトで、迅速な開発サイクルを実現。
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </section>
 
