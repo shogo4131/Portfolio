@@ -15,6 +15,7 @@ import {
 
 import { Skill } from "@/api/skills";
 import { Company } from "@/api/company";
+import { dateFormat } from "@/lib/utils";
 
 type Props = {
   skillList: Skill[];
@@ -281,7 +282,10 @@ export function ProfilePageComponent({ skillList, companyList }: Props) {
                       </h3>
                       <p className="text-gray-400">
                         {company.occupation} (
-                        {`${company.startDate} - ${company.endDate}`})
+                        {`${dateFormat(company.startDate)} - ${
+                          company.endDate ? dateFormat(company.endDate) : "現在"
+                        }`}
+                        )
                       </p>
                     </div>
                   </AccordionTrigger>
