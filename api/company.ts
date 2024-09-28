@@ -18,6 +18,7 @@ export type Company = {
   content: string;
   startDate: string;
   endDate?: string;
+  isEmployee: boolean;
 };
 
 export const getCompanyLList = async () => {
