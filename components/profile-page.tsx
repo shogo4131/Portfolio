@@ -34,7 +34,7 @@ export function ProfilePageComponent({ skillList, companyList }: Props) {
 
   const skills = skillList.reduce(
     (acc: { [key: string]: string[] }, { skill, skillType }) => {
-      skillType.forEach((type) => {
+      skillType.map((type) => {
         acc[type] = acc[type] ? [...acc[type], skill] : [skill];
       });
       return acc;
@@ -269,14 +269,15 @@ export function ProfilePageComponent({ skillList, companyList }: Props) {
             </h2>
             <Accordion type="multiple" value={openItems} className="space-y-4">
               {companyList.map((company) => (
-                <AccordionItem value="item-1" key={company.id}>
+                <AccordionItem value={company.id} key={company.id}>
                   <AccordionTrigger
-                    onClick={() => toggleAccordion("item-1")}
+                    onClick={() => toggleAccordion(company.id)}
                     className="text-left"
                   >
                     <div>
                       <h3 className="text-xl font-medium">
-                        {company.companyName}
+                        {company.companyName} (
+                        {company.isEmployee ? "正社員" : "業務委託"})
                       </h3>
                       <p className="text-gray-400">
                         {company.occupation} (
