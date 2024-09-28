@@ -8,5 +8,9 @@ export function cn(...inputs: ClassValue[]) {
 export const dateFormat = (date: string) => {
   const utcDate = new Date(date);
 
-  return new Date(utcDate.getTime()).toLocaleString("ja");
+  return new Date(utcDate.getTime()).toLocaleString("ja", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "2-digit",
+  });
 };
