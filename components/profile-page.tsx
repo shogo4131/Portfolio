@@ -5,6 +5,7 @@ import { FaTwitter, FaGithub, FaSpeakerDeck } from "react-icons/fa";
 import { Mail, MessageCircle } from "lucide-react";
 import { SiZenn } from "react-icons/si";
 import { GrDocumentNotes } from "react-icons/gr";
+import Image from "next/image";
 
 import {
   Accordion,
@@ -54,9 +55,11 @@ export function ProfilePageComponent({ skillList, companyList }: Props) {
         />
         <div className="absolute inset-0 flex items-center justify-center" />
         <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
-          <img
-            src="/profile.jpg"
+          <Image
+            src="/profile.webp"
             alt="プロフィール写真"
+            width={160}
+            height={160}
             className="w-40 h-40 rounded-full border-4 border-white shadow-lg"
           />
         </div>
