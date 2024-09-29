@@ -16,13 +16,34 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Shogo Portfolio",
-  description: "経歴を紹介するサイトです",
-  twitter: {
-    title: "Shogo Portfolio",
-    description: "経歴を紹介するサイトです",
-    card: "summary_large_image",
+  title: "Shogo Website",
+  description: "my website",
+  openGraph: {
+    description: "my website",
+    siteName: "Shogo Website",
+    images: "/profile.webp",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+    type: "website",
+    locale: "ja_JP",
   },
+  twitter: {
+    title: "Shogo Website",
+    site: "@react_nextjs",
+    description: "my website",
+    card: "summary_large_image",
+    creator: "@react_nextjs",
+    images: "/profile.webp",
+  },
+  icons: [
+    { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
+    { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
+    { rel: "apple-touch-icon", url: "/apple-touch-icon.png" },
+    { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
+  ],
+  manifest: "/site.webmanifest",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+  ),
 };
 
 export default function RootLayout({
